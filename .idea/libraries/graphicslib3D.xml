@@ -1,12 +1,9 @@
 <component name="libraryTable">
   <library name="graphicslib3D">
     <CLASSES>
-      <root url="file://C:/graphicslib3D" />
+      <root url="jar://C:/graphicslib3D/graphicslib3D.jar!/" />
     </CLASSES>
-    <JAVADOC>
-      <root url="file://C:/graphicslib3D/javadoc" />
-    </JAVADOC>
+    <JAVADOC />
     <SOURCES />
-    <jarDirectory url="file://C:/graphicslib3D" recursive="false" />
   </library>
 </component>

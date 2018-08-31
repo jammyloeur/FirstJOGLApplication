@@ -1,19 +1,21 @@
-import java.nio.*;
 import javax.swing.*;
 import static com.jogamp.opengl.GL4.*;
 import com.jogamp.opengl.*;
 import com.jogamp.opengl.awt.GLCanvas;
-import com.jogamp.opengl.GLContext;
-import com.jogamp.common.nio.Buffers;
 
-public class Code  extends JFrame implements GLEventListener {
+import graphicslib3D.*;
+import graphicslib3D.GLSLUtils.*;
+
+public class Code extends JFrame implements GLEventListener {
     private int rendering_program;
     private int vao[] = new int[1];
     private GLCanvas myCanvas;
+    private GLSLUtils util = new GLSLUtils();
 
     public Code() {
         setTitle("Chapter2 - program1");
         setSize(600, 400);
+        setLocation(200, 200);
         myCanvas = new GLCanvas();
         myCanvas.addGLEventListener(this);
         this.add(myCanvas);
@@ -41,27 +43,17 @@ public class Code  extends JFrame implements GLEventListener {
     private int createShaderProgram() {
         GL4 gl = (GL4) GLContext.getCurrentGL();
 
-        String vshaderSource[] =
-                {
-                        "#version 430 \n",
-                        "void main(void) \n",
-                        "{ gl_Position = vec4(0.0, 0.0, 0.0, 1.0); } \n",
-                };
-
-        String fshaderSource[] =
-                {
-                        "#version 430 \n",
-                        "out vec4 color; \n",
-                        "void main(void) \n",
-                        "{ if (gl_FragCoord.x < 200) color = vec4(1.0, 0.0, 0.0, 1.0); else color = vec4(0.0, 0.0, 1.0, 1.0); } \n",
-                };
+        String vshaderSource[] = util.readShaderSource("src/vert.shader");
+        String fshaderSource[] = util.readShaderSource("src/frag.shader");
+        int lengths[];
 
         int vShader = gl.glCreateShader(GL_VERTEX_SHADER);
-        gl.glShaderSource(vShader, 3, vshaderSource, null, 0);
+        int fShader = gl.glCreateShader(GL_FRAGMENT_SHADER);
+
+        gl.glShaderSource(vShader, vshaderSource.length, vshaderSource, null, 0);
         gl.glCompileShader(vShader);
 
-        int fShader = gl.glCreateShader(GL_FRAGMENT_SHADER);
-        gl.glShaderSource(fShader, 4, fshaderSource, null, 0);
+        gl.glShaderSource(fShader, fshaderSource.length, fshaderSource, null, 0);
         gl.glCompileShader(fShader);
 
         int vfprogram = gl.glCreateProgram();
@@ -75,6 +67,5 @@ public class Code  extends JFrame implements GLEventListener {
     }
 
     public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) { }
-
     public void dispose(GLAutoDrawable drawable) { }
 }
