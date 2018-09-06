@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="gluegen-rt">
     <CLASSES>
-      <root url="jar://C:/jogamp-all-platforms/jar/gluegen-rt.jar!/" />
+      <root url="jar://C:/JOGL/jogamp-all-platforms/jar/gluegen-rt.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

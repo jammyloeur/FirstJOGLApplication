@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="jogl-all">
     <CLASSES>
-      <root url="jar://C:/jogamp-all-platforms/jar/jogl-all.jar!/" />
+      <root url="jar://C:/JOGL/jogamp-all-platforms/jar/jogl-all.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
